@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: ./geospatial-backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./geospatial-backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - .env
+
+
+  frontend:
+    build:
+      context: ./portal
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./portal:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
